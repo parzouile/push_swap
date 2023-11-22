@@ -7,14 +7,14 @@
 
 typedef struct s_list
 {
-	int         content;
-    int         indice;
+	long         content;
+    long         indice;
 	struct s_list	*next;
 }					t_list;
 
-int	ft_atoi(const char *str);
+long	ft_atoi(const char *str);
 void	ft_lstclear(t_list **lst);
-t_list	*ft_lstnew(int content);
+t_list	*ft_lstnew(long content);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 

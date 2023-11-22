@@ -6,11 +6,23 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 17:34:01 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/11/22 11:08:56 by aschmitt         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:08:03 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	check_sorted(t_list *stack)
+{
+	while (stack != NULL && stack->next != NULL)
+	{
+		if (stack->content < stack->next->content)
+			stack = stack->next;
+		else
+			return (0);
+	}
+	return (1);
+}
 
 int	is_number(char *s)
 {
@@ -30,6 +42,27 @@ int	is_number(char *s)
 	
 }
 
+int	all_diferent(t_list *list)
+{
+	t_list *current;
+	t_list *runner;
+
+	if (list == NULL)
+        return (1);
+	
+	current = list;
+    while (current != NULL) {
+        runner = current->next;
+        while (runner != NULL) {
+            if (current->content == runner->content)
+                return 0;
+            runner = runner->next;
+        }
+        current = current->next;
+    }
+    return (1);
+}
+
 static t_list *create_list(int size, char **stack)
 {
 	int	i;
@@ -42,14 +75,18 @@ static t_list *create_list(int size, char **stack)
 	while (++i < size)
 	{
 		node = ft_lstnew(ft_atoi(stack[i]));
-		if (!is_number(stack[i]) || node == NULL)
+		if (!is_number(stack[i]) || node == NULL || node->content == 2147483648)
 		{
 			ft_lstclear(&res);
 			free(node);
 			return (res);
 		}
+		node->indice = i;
 		ft_lstadd_back(&res, node);
 	}
+	if (all_diferent(res))
+		return (res);
+	ft_lstclear(&res);
 	return (res);
 	
 }

@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:39:27 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/11/22 11:08:35 by aschmitt         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:57:34 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		*lst = new;
 }
 
-t_list	*ft_lstnew(int content)
+t_list	*ft_lstnew(long content)
 {
 	t_list	*res;
 
@@ -41,10 +41,10 @@ t_list	*ft_lstnew(int content)
 	return (res);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
-	int		n;
-	int		sign;
+	long		n;
+	long		sign;
 	size_t	i;
 
 	n = 0;
@@ -59,6 +59,8 @@ int	ft_atoi(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		n = n * 10 + (str[i] - '0');
+        if ((n * sign) > 2147483647 || (n * sign) < -2147483648)
+            return (2147483648);
 		i ++;
 	}
 	return (n * sign);
@@ -77,7 +79,7 @@ void    print_stack(t_list *a)
 {
 	while (a != NULL)
 	{
-		printf("node = %d\n", a->content);
+		printf("node = %ld\n", a->content);
 		a = a->next;
 	}
 }
