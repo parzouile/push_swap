@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 17:34:01 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/11/22 17:08:03 by aschmitt         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:40:17 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	all_diferent(t_list *list)
     return (1);
 }
 
+
+
 static t_list *create_list(int size, char **stack)
 {
 	int	i;
@@ -91,13 +93,38 @@ static t_list *create_list(int size, char **stack)
 	
 }
 
+static t_list	*create_list_split(char *s)
+{
+	char **stack;
+	int		i;
+	t_list	*res;
+
+	i = 0;
+	stack = ft_split(s, ' ');
+	if (stack == NULL)
+		return (NULL);
+	while (stack[i])
+		i ++;
+	res = create_list(i, stack);
+	i = -1;
+	while (stack[++i])
+	{
+		free(stack[i]);
+	}
+	free(stack);
+	return (res);
+}
+	
 int main(int argc, char **argv)
 {
 	t_list *a;
 	
     if (argc == 1)
         return (1);
-	a = create_list(argc - 1, argv + 1);
+	if (argc == 2)
+		a = create_list_split(argv[1]);
+	else
+		a = create_list(argc - 1, argv + 1);
     if (a == NULL)
 	{
 		write(1, "Error\n", 6);

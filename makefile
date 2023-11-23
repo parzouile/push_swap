@@ -6,7 +6,7 @@
 #    By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/21 17:32:12 by aschmitt          #+#    #+#              #
-#    Updated: 2023/11/21 18:22:00 by aschmitt         ###   ########.fr        #
+#    Updated: 2023/11/23 16:54:33 by aschmitt         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = cc
 FLAGS = -Wall -Wextra -Werror
 
 NAME = push_swap
-SRCS = push_swap.c \
+SRCS = push_swap.c
 			
 HEADER = push_swap.h
 OBJS = ${SRCS:.c=.o}

@@ -17,6 +17,7 @@ void	ft_lstclear(t_list **lst);
 t_list	*ft_lstnew(long content);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
+char	**ft_split(char const *s, char c);
 
 
 
