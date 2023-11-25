@@ -12,6 +12,14 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+void	swap_a(t_list **a);
+int	len_stack(t_list *stack);
+int	check_sorted(t_list *stack);
+void    little_sort(t_list **a);
+void	rotate_a(t_list **a);
+void	reverse_rotate_a(t_list **a);
+void    update_index(t_list **stack);
+
 long	ft_atoi(const char *str);
 void	ft_lstclear(t_list **lst);
 t_list	*ft_lstnew(long content);

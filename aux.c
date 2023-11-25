@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:39:27 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/11/23 15:08:23 by aschmitt         ###   ########.fr       */
+/*   Updated: 2023/11/25 15:32:59 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ t_list	*ft_lstlast(t_list *lst)
 		lst = lst->next;
 	return (lst);
 }
+
+
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
@@ -79,8 +81,7 @@ void    print_stack(t_list *a)
 {
 	while (a != NULL)
 	{
-		printf("node = %ld\n", a->content);
+		printf("node = %ld et index = %ld\n", a->content, a->indice);
 		a = a->next;
 	}
 }
-

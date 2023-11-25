@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 17:34:01 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/11/23 15:40:17 by aschmitt         ###   ########.fr       */
+/*   Updated: 2023/11/25 15:18:02 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,18 @@ int	all_diferent(t_list *list)
 }
 
 
-
-static t_list *create_list(int size, char **stack)
+static t_list *create_list(char **argv)
 {
 	int	i;
-	int a;
 	t_list	*res;
 	t_list	*node;
 
 	i = -1;
 	res = NULL;
-	while (++i < size)
+	while (argv[++i])
 	{
-		node = ft_lstnew(ft_atoi(stack[i]));
-		if (!is_number(stack[i]) || node == NULL || node->content == 2147483648)
+		node = ft_lstnew(ft_atoi(argv[i]));
+		if (!is_number(argv[i]) || node == NULL || node->content == 2147483648)
 		{
 			ft_lstclear(&res);
 			free(node);
@@ -99,13 +97,10 @@ static t_list	*create_list_split(char *s)
 	int		i;
 	t_list	*res;
 
-	i = 0;
 	stack = ft_split(s, ' ');
 	if (stack == NULL)
 		return (NULL);
-	while (stack[i])
-		i ++;
-	res = create_list(i, stack);
+	res = create_list(stack);
 	i = -1;
 	while (stack[++i])
 	{
@@ -121,14 +116,21 @@ int main(int argc, char **argv)
 	
     if (argc == 1)
         return (1);
-	if (argc == 2)
+	else if (argc == 2)
 		a = create_list_split(argv[1]);
 	else
-		a = create_list(argc - 1, argv + 1);
+		a = create_list(argv + 1);
     if (a == NULL)
 	{
 		write(1, "Error\n", 6);
 		return (1);
+	}
+	if (!check_sorted(a))
+	{
+		if (len_stack(a) == 2)
+			swap_a(&a);
+		else if (len_stack(a) == 3)
+			little_sort(&a);
 	}
 	print_stack(a);
 	ft_lstclear(&a);
