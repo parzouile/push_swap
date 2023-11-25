@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:01:00 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/11/25 15:08:59 by aschmitt         ###   ########.fr       */
+/*   Updated: 2023/11/25 15:52:40 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,20 @@ void	swap(t_list **stack)
 void	swap_a(t_list **a)
 {
 	swap(a);
-	printf("sa\n");
+	printf("sa\n"); ////attention utiliser ft_printf
 }
 
 void	swap_b(t_list **b)
 {
 	swap(b);
 	printf("sb\n");
+}
+
+void	swap_ab(t_list **a, t_list **b)
+{
+	swap(a);
+	swap(b);
+	printf("ss\n");
 }
 
 int	len_stack(t_list *stack)
