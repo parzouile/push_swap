@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 14:13:01 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/11/25 15:49:54 by aschmitt         ###   ########.fr       */
+/*   Updated: 2023/11/27 12:23:04 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void    update_index(t_list **stack)
 	i = -1;
 	while (tmp != NULL)
 	{
-		tmp->indice = ++i;
+		tmp->index = ++i;
 		tmp = tmp->next;
 	}
 }

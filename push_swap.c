@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 17:34:01 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/11/25 15:18:02 by aschmitt         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:05:08 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,21 @@ int	all_diferent(t_list *list)
 	t_list *runner;
 
 	if (list == NULL)
-        return (1);
+		return (1);
 	
 	current = list;
-    while (current != NULL) {
-        runner = current->next;
-        while (runner != NULL) {
-            if (current->content == runner->content)
-                return 0;
-            runner = runner->next;
-        }
-        current = current->next;
-    }
-    return (1);
+	while (current != NULL) 
+	{
+		runner = current->next;
+		while (runner != NULL) 
+		{
+			if (current->content == runner->content)
+				return 0;
+			runner = runner->next;
+		}
+		current = current->next;
+	}
+	return (1);
 }
 
 
@@ -81,7 +83,7 @@ static t_list *create_list(char **argv)
 			free(node);
 			return (res);
 		}
-		node->indice = i;
+		node->index = i;
 		ft_lstadd_back(&res, node);
 	}
 	if (all_diferent(res))
@@ -113,14 +115,14 @@ static t_list	*create_list_split(char *s)
 int main(int argc, char **argv)
 {
 	t_list *a;
-	
-    if (argc == 1)
-        return (1);
+
+	if (argc == 1)
+		return (1);
 	else if (argc == 2)
 		a = create_list_split(argv[1]);
 	else
 		a = create_list(argv + 1);
-    if (a == NULL)
+	if (a == NULL)
 	{
 		write(1, "Error\n", 6);
 		return (1);
@@ -131,8 +133,10 @@ int main(int argc, char **argv)
 			swap_a(&a);
 		else if (len_stack(a) == 3)
 			little_sort(&a);
+		else
+			big_sort(&a);
 	}
-	print_stack(a);
+	//print_stack(a);
 	ft_lstclear(&a);
 	return (0);
 }
