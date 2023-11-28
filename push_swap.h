@@ -9,6 +9,7 @@ typedef struct s_list
 {
 	long         content;
     long         index;
+	int			cost;
 	struct s_list	*target;
 	struct s_list	*next;
 }					t_list;
@@ -18,12 +19,20 @@ int		len_stack(t_list *stack);
 int		check_sorted(t_list *stack);
 void	little_sort(t_list **a);
 void	rotate_a(t_list **a);
+void	rotate_b(t_list **b);
+void	rotate_ab(t_list **a, t_list **b);
 void	reverse_rotate_a(t_list **a);
+void	reverse_rotate_b(t_list **b);
+void	reverse_rotate_ab(t_list **a, t_list **b);
 void    update_index(t_list **stack);
 void	push_a(t_list **a, t_list **b);
 void	push_b(t_list **a, t_list **b);
 void	big_sort(t_list **a);
 t_list	*find_max(t_list *a);
+t_list	*find_less_cost(t_list *a);
+void	init_cost(t_list *actual, t_list *other);
+void	prepare_push(t_list **a, t_list **b, t_list *node);
+
 
 long	ft_atoi(const char *str);
 void	ft_lstclear(t_list **lst);

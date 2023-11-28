@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:28:37 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/11/27 21:54:11 by aschmitt         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:12:47 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	finish_sort(t_list **a)
 	t_list	*min;
 
 	min = find_min(*a);
-	if (min->index - 1 < len_stack(*a) / 2)
+	if (min->index  <= len_stack(*a) / 2)
 		while ((*a)->content != min->content)
 			rotate_a(a);
 	else
@@ -45,8 +45,10 @@ void	find_target_a(t_list **a, t_list *b)
 	t_list	*current_a;
 	t_list	*current_b;
 	t_list	*closest_smaller;
+	t_list	*max;
 
 	current_a = *a;
+	max = find_max(b);
 	while (current_a != NULL) 
 	{
 		current_b = b;
@@ -61,7 +63,7 @@ void	find_target_a(t_list **a, t_list *b)
 		if (closest_smaller != NULL) 
 			current_a->target = closest_smaller;
 		else
-			current_a->target = find_max(b);
+			current_a->target = max;
 		current_a = current_a->next;
 	}
 }
@@ -71,8 +73,10 @@ void	find_target_b(t_list **a, t_list *b)
 	t_list	*current_a;
 	t_list	*current_b;
 	t_list	*closest_larger;
+	t_list	*min;
 
 	current_a = *a;
+	min = find_min(b);
     while (current_a != NULL) 
 	{
         current_b = b;
@@ -80,14 +84,14 @@ void	find_target_b(t_list **a, t_list *b)
         while (current_b != NULL) 
 		{
             if (current_b->content > current_a->content)
-                if (closest_larger == NULL || current_b->content > closest_larger->content) 
+                if (closest_larger == NULL || current_b->content < closest_larger->content) 
                     closest_larger = current_b;
             current_b = current_b->next;
         }
         if (closest_larger != NULL) 
             current_a->target = closest_larger;
 		else
-            current_a->target = find_min(b);
+            current_a->target = min;
         current_a = current_a->next;
     }
 }
@@ -102,16 +106,18 @@ void	big_sort(t_list **a)
 	push_b(a, &b);
 	if (--size > 3 && check_sorted(*a )== 0)
 		push_b(a, &b);
-	/*while (--size > 3 && check_sorted(*a) == 0)
+	while (--size > 3 && check_sorted(*a) == 0)
 	{
 		find_target_a(a, b);
-	}*/
-	if (check_sorted(*a)== 0)
+		init_cost(*a, b);
+		prepare_push(a, &b, find_less_cost(*a));
+	}
+	if (check_sorted(*a) == 0)
 		little_sort(a);
-	
-	/*while (b)
+	while (b)
 	{
 		find_target_b(&b, *a);
-	}*/
+		init_cost(b, *a);
+	}
 	finish_sort(a);
 }

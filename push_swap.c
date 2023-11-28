@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 17:34:01 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/11/27 13:05:08 by aschmitt         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:20:40 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int main(int argc, char **argv)
 		else
 			big_sort(&a);
 	}
-	//print_stack(a);
+	print_stack(a);
 	ft_lstclear(&a);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:39:27 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/11/27 13:06:11 by aschmitt         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:01:24 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ void    print_stack(t_list *a)
 {
 	while (a != NULL)
 	{
-		printf("node = %ld et index = %ld et target = %ld\n", a->content, a->index, a->target->content);
+		if (a->target != NULL)
+			printf("node = %ld et index = %ld et target = %ld\n", a->content, a->index, a->target->content);
+		else
+			printf("node = %ld et index = %ld\n", a->content, a->index);
 		a = a->next;
 	}
 }
