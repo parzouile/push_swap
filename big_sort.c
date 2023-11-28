@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:28:37 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/11/28 19:12:47 by aschmitt         ###   ########.fr       */
+/*   Updated: 2023/11/28 22:51:03 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,14 +110,18 @@ void	big_sort(t_list **a)
 	{
 		find_target_a(a, b);
 		init_cost(*a, b);
-		prepare_push(a, &b, find_less_cost(*a));
+		prepare_push_a(a, &b, find_less_cost(*a));
 	}
 	if (check_sorted(*a) == 0)
 		little_sort(a);
+	printf("a : \n");
+	print_stack(*a);
+	printf("\n b : \n");
+	print_stack(b);
 	while (b)
 	{
 		find_target_b(&b, *a);
 		init_cost(b, *a);
 	}
-	finish_sort(a);
+	finish_sort(a);*/
 }
