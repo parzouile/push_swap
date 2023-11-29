@@ -32,6 +32,11 @@ t_list	*find_max(t_list *a);
 t_list	*find_less_cost(t_list *a);
 void	init_cost(t_list *actual, t_list *other);
 void	prepare_push_a(t_list **a, t_list **b, t_list *node);
+void	prepare_push_b(t_list **a, t_list **b, t_list *node);
+void	prepare_b(t_list **a, t_list *node, long size_a);
+void	prepare_a(t_list **a, t_list *node, long size_a);
+void	reverse_rotate_all(t_list **a, t_list **b, t_list *node);
+void	rotate_all(t_list **a, t_list **b, t_list *node);
 
 
 long	ft_atoi(const char *str);
