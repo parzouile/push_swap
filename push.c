@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:48:34 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/11/27 11:03:01 by aschmitt         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:08:10 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	push_a(t_list **a, t_list **b)
 	if (b != NULL)
 	{
 		push(a, b);
-		printf("pa\n");
+		write(0, "pa\n", 3);
 	}
 }
 
@@ -38,6 +38,6 @@ void	push_b(t_list **a, t_list **b)
 	if (a != NULL)
 	{
 		push(b, a);
-		printf("pb\n");
+		write(0, "pb\n", 3);
 	}
 }
