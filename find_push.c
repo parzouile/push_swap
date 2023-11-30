@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 18:21:58 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/11/28 22:51:30 by aschmitt         ###   ########.fr       */
+/*   Updated: 2023/11/30 22:41:53 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,12 @@ void	rotate_all(t_list **a, t_list **b, t_list *node)
 {
 	while ((*a)->content != node->content && (*b)->content != node->target->content)
 		rotate_ab(a, b);
-	while ((*a)->content != node->content)
-		rotate_a(a);
-	while ((*b)->content != node->target->content)
-		rotate_b(b);
 }
 
 void	reverse_rotate_all(t_list **a, t_list **b, t_list *node)
 {
 	while ((*a)->content != node->content && (*b)->content != node->target->content)
 		reverse_rotate_ab(a, b);
-	while ((*a)->content != node->content)
-		reverse_rotate_a(a);
-	while ((*b)->content != node->target->content)
-		reverse_rotate_b(b);
 }
 
 void	prepare_a(t_list **a, t_list *node, long size_a)
@@ -46,7 +38,7 @@ void	prepare_a(t_list **a, t_list *node, long size_a)
 
 void	prepare_b(t_list **a, t_list *node, long size_a)
 {
-	if (node->index <= (size_a / 2))
+	if (node->target->index <= (size_a / 2))
 	{
 		while ((*a)->content != node->target->content)
 			rotate_b(a);
