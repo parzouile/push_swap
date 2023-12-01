@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:28:37 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/11/30 22:34:27 by aschmitt         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:44:01 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	big_sort(t_list **a)
 {
 	t_list	*b;
 	int		size;
-	
+
 	b = NULL;
 	size = len_stack(*a);
 	push_b(a, &b);

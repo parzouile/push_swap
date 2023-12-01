@@ -6,7 +6,7 @@
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 17:34:01 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/11/30 22:36:08 by aschmitt         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:13:15 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,10 @@ static t_list	*create_list_split(char *s)
 int main(int argc, char **argv)
 {
 	t_list *a;
+	t_list *b;
 
+	a = NULL;
+	b = NULL;
 	if (argc == 1)
 		return (1);
 	else if (argc == 2)
@@ -124,7 +127,7 @@ int main(int argc, char **argv)
 		a = create_list(argv + 1);
 	if (a == NULL)
 	{
-		write(1, "Error\n", 6);
+		printf("Error\n");
 		return (1);
 	}
 	if (!check_sorted(a))
@@ -136,6 +139,7 @@ int main(int argc, char **argv)
 		else
 			big_sort(&a);
 	}
+	(void)b;
 	ft_lstclear(&a);
 	return (0);
 }
