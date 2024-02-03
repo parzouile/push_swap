@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 17:34:01 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/12/01 17:13:15 by aschmitt         ###   ########.fr       */
+/*   Created: 2024/01/24 10:17:19 by aschmitt          #+#    #+#             */
+/*   Updated: 2024/01/24 13:09:05 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_sorted(t_list *stack)
+static int	all_diferent(t_list *list)
 {
-	while (stack != NULL && stack->next != NULL)
+	t_list	*current;
+	t_list	*runner;
+
+	if (list == NULL)
+		return (1);
+	current = list;
+	while (current != NULL)
 	{
-		if (stack->content < stack->next->content)
-			stack = stack->next;
-		else
-			return (0);
+		runner = current->next;
+		while (runner != NULL)
+		{
+			if (current->content == runner->content)
+				return (0);
+			runner = runner->next;
+		}
+		current = current->next;
 	}
 	return (1);
 }
 
-int	is_number(char *s)
+static int	is_number(char *s)
 {
 	int	i;
 
@@ -39,36 +49,11 @@ int	is_number(char *s)
 			return (0);
 	}
 	return (i > 0);
-	
 }
 
-int	all_diferent(t_list *list)
+static t_list	*create_list(char **argv)
 {
-	t_list *current;
-	t_list *runner;
-
-	if (list == NULL)
-		return (1);
-	
-	current = list;
-	while (current != NULL) 
-	{
-		runner = current->next;
-		while (runner != NULL) 
-		{
-			if (current->content == runner->content)
-				return 0;
-			runner = runner->next;
-		}
-		current = current->next;
-	}
-	return (1);
-}
-
-
-static t_list *create_list(char **argv)
-{
-	int	i;
+	int		i;
 	t_list	*res;
 	t_list	*node;
 
@@ -90,12 +75,11 @@ static t_list *create_list(char **argv)
 		return (res);
 	ft_lstclear(&res);
 	return (res);
-	
 }
 
 static t_list	*create_list_split(char *s)
 {
-	char **stack;
+	char	**stack;
 	int		i;
 	t_list	*res;
 
@@ -111,11 +95,11 @@ static t_list	*create_list_split(char *s)
 	free(stack);
 	return (res);
 }
-	
-int main(int argc, char **argv)
+
+int	main(int argc, char **argv)
 {
-	t_list *a;
-	t_list *b;
+	t_list	*a;
+	t_list	*b;
 
 	a = NULL;
 	b = NULL;
@@ -126,20 +110,15 @@ int main(int argc, char **argv)
 	else
 		a = create_list(argv + 1);
 	if (a == NULL)
-	{
-		printf("Error\n");
-		return (1);
-	}
-	if (!check_sorted(a))
-	{
-		if (len_stack(a) == 2)
-			swap_a(&a);
-		else if (len_stack(a) == 3)
-			little_sort(&a);
-		else
-			big_sort(&a);
-	}
-	(void)b;
-	ft_lstclear(&a);
+		ft_error("Error\n", &a, &b);
+	execute_command(&a, &b);
+	if (check_sorted(a) && b == NULL)
+		ft_putstr("OK\n");
+	else
+		ft_putstr("KO\n");
+	if (a)
+		ft_lstclear(&a);
+	if (b)
+		ft_lstclear(&b);
 	return (0);
 }

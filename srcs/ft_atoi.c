@@ -1,43 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 10:48:34 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/12/01 17:13:32 by aschmitt         ###   ########.fr       */
+/*   Created: 2023/12/04 12:13:58 by aschmitt          #+#    #+#             */
+/*   Updated: 2024/01/26 15:27:43 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push(t_list **a, t_list **b)
+long	ft_atoi(const char *str)
 {
-	t_list	*tmp;
+	long	n;
+	int		sign;
+	size_t	i;
 
-	tmp = *b;
-	*b = (*b)->next;
-	tmp->next = *a;
-	*a = tmp;
-	update_index(a);
-	update_index(b);
-}
-
-void	push_a(t_list **a, t_list **b)
-{
-	if (b != NULL)
+	n = 0;
+	sign = 1;
+	i = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i ++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		push(a, b);
-		printf("pa\n");
+		if (str[i] == '-')
+			sign = -1;
+		i ++;
 	}
-}
-
-void	push_b(t_list **a, t_list **b)
-{
-	if (a != NULL)
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		push(b, a);
-		printf("pb\n");
+		n = n * 10 + (str[i] - '0');
+		i ++;
 	}
+	if (n * sign < -2147483648 || n * sign > 2147483647)
+		return (2147483648);
+	return (n * sign);
 }

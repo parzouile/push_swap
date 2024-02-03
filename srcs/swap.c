@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 13:01:00 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/12/01 17:14:52 by aschmitt         ###   ########.fr       */
+/*   Created: 2023/12/01 19:14:56 by aschmitt          #+#    #+#             */
+/*   Updated: 2024/01/24 15:20:11 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_list **stack)
+static void	swap(t_list **stack)
 {
 	long	tmp;
 
@@ -23,35 +23,24 @@ void	swap(t_list **stack)
 	(*stack)->next->content = tmp;
 }
 
-void	swap_a(t_list **a)
+void	swap_a(t_list **a, int print)
 {
 	swap(a);
-	printf("sa\n");
+	if (print)
+		ft_putstr("sa\n");
 }
 
-void	swap_b(t_list **b)
+void	swap_b(t_list **b, int print)
 {
 	swap(b);
-	printf("sb\n");
+	if (print)
+		ft_putstr("sb\n");
 }
 
-void	swap_ab(t_list **a, t_list **b)
+void	swap_ab(t_list **a, t_list **b, int print)
 {
 	swap(a);
 	swap(b);
-	printf("ss\n");
+	if (print)
+		ft_putstr("ss\n");
 }
-
-int	len_stack(t_list *stack)
-{
-	int	i;
-	
-	i = 0;
-	while (stack != NULL)
-	{
-		i ++;
-		stack = stack->next;
-	}
-	return (i);
-}
-

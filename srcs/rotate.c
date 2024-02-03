@@ -5,30 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aschmitt <aschmitt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 14:13:01 by aschmitt          #+#    #+#             */
-/*   Updated: 2023/12/01 17:14:30 by aschmitt         ###   ########.fr       */
+/*   Created: 2023/12/01 19:16:50 by aschmitt          #+#    #+#             */
+/*   Updated: 2024/01/24 13:28:55 by aschmitt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    update_index(t_list **stack)
+static void	rotate(t_list **stack)
 {
-	int i;
-	t_list  *tmp;
-
-	tmp = *stack;
-	i = -1;
-	while (tmp != NULL)
-	{
-		tmp->index = ++i;
-		tmp = tmp->next;
-	}
-}
-
-void    rotate(t_list **stack)
-{
-	t_list  *tmp;
+	t_list	*tmp;
 
 	tmp = *stack;
 	*stack = (*stack)->next;
@@ -37,21 +23,30 @@ void    rotate(t_list **stack)
 	update_index(stack);
 }
 
-void	rotate_a(t_list **a)
+void	rotate_a(t_list **a, int print)
 {
+	if (*a == NULL)
+		return ;
 	rotate(a);
-	printf("ra\n");
+	if (print)
+		ft_putstr("ra\n");
 }
 
-void	rotate_b(t_list **b)
+void	rotate_b(t_list **b, int print)
 {
+	if (*b == NULL)
+		return ;
 	rotate(b);
-	printf("rb\n");
+	if (print)
+		ft_putstr("rb\n");
 }
 
-void	rotate_ab(t_list **a, t_list **b)
+void	rotate_ab(t_list **a, t_list **b, int print)
 {
+	if (*a == NULL || *b == NULL)
+		return ;
 	rotate(a);
 	rotate(b);
-	printf("rr\n");
+	if (print)
+		ft_putstr("rr\n");
 }
